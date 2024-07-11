@@ -41,6 +41,7 @@ function equalsOperate(){
     display.innerHTML = displayValue;
     secondNumber = "";
     operator = "";
+    displaySwitch = true;
     }
 
 }
@@ -92,17 +93,17 @@ function displayNumber(number) {
 
 function add(firstNumber, secondNumber) {
     let result = parseFloat(firstNumber) + parseFloat(secondNumber);
-    return result.toFixed(2); 
+    return result; 
 }
 
 function subtract(firstNumber, secondNumber) {
     let result = parseFloat(firstNumber) - parseFloat(secondNumber);
-    return result.toFixed(2); 
+    return result; 
 }
 
 function multiply(firstNumber, secondNumber) {
     let result = parseFloat(firstNumber) * parseFloat(secondNumber);
-    return result.toFixed(2); 
+    return result; 
 }
 
 function divide(firstNumber, secondNumber) {
@@ -110,7 +111,7 @@ function divide(firstNumber, secondNumber) {
         let result = "5318008"
     }
     let result = parseFloat(firstNumber) / parseFloat(secondNumber);
-    return result.toFixed(2); 
+    return result; 
 }
 
 function operate(firstNumber, secondNumber, operator) {
@@ -129,7 +130,14 @@ function operate(firstNumber, secondNumber, operator) {
             result = divide(firstNumber, secondNumber);
             break;
     }
-
-    return result.toString().slice(-11);
+    if (result.toString().includes(".")) 
+        {   
+            let leng = result.toString().split(".")[0].length;
+            let decimals = 10 - leng;
+            result = result.toFixed(decimals);            
+        }
+    
+        return result.toString().length > 11 ? result.toString().slice(0,11) : result;
+    
 
 }
