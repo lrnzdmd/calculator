@@ -3,6 +3,7 @@ let displayValue = "0";
 let firstNumber = "0";
 let secondNumber = "";
 let operator = "";
+let secondOperator = "";
 let displaySwitch = false;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -29,6 +30,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 equalsOperate();
             });
         }
+        else if (buttons[i].classList.contains("decimal")){
+            buttons[i].addEventListener("click", function(){
+                if (!displayValue.includes(".")){
+                    displayNumber(buttons[i].value);
+                }
+            });
+        }
     }
 
 });
@@ -47,10 +55,10 @@ function equalsOperate(){
 }
 
 function setOperator(oper){
+    
     if (operator) {
         secondNumber = displayValue;
     }
-
 
 
     if (secondNumber !== ""){
@@ -73,7 +81,7 @@ function clearDisplay() {
 
 function displayNumber(number) {
 
-    if (displayValue === "0" || displaySwitch)
+    if (displayValue === "0" && number != "." || displaySwitch )
         {
             display.innerHTML = "";
             displayValue = "";
@@ -107,8 +115,8 @@ function multiply(firstNumber, secondNumber) {
 }
 
 function divide(firstNumber, secondNumber) {
-    if (secondNumber === 0) { 
-        let result = "5318008"
+    if (parseFloat(secondNumber) === 0) { 
+        return "5318008";
     }
     let result = parseFloat(firstNumber) / parseFloat(secondNumber);
     return result; 
@@ -134,10 +142,21 @@ function operate(firstNumber, secondNumber, operator) {
         {   
             let leng = result.toString().split(".")[0].length;
             let decimals = 10 - leng;
-            result = result.toFixed(decimals);            
-        }
+            result = result.toFixed(decimals);
+            result = cleanZeroes(result);            
+        }  
+
     
         return result.toString().length > 11 ? result.toString().slice(0,11) : result;
     
 
+}
+function cleanZeroes(number) {
+    if (number[number.length - 1] === "0" && number.length > 1) {
+        return cleanZeroes(number.slice(0, -1));
+    } else if (number[number.length - 1] === "." && number.length > 1) {
+        return number.slice(0, -1);
+    } else {
+        return number;
+    }
 }

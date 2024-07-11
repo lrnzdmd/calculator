@@ -9,8 +9,8 @@ body {
     border-radius: 2vw;
     border: 2vw solid rgb(58, 54, 54);
     background-color: rgb(58, 54, 54);
-    grid-template-columns: repeat(4, 10vw);
-    grid-template-rows: minmax(10vw, auto) repeat(5, 8vw);
+    grid-template-columns: repeat(4, 8vw);
+    grid-template-rows: minmax(8vw, auto) repeat(5, 6vw);
     gap: 0.15vw;
 }
 
