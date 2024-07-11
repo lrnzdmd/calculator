@@ -1,3 +1,55 @@
 * {
-    background-color:darkorange
+    //*outline: 2px solid red*//
 }
+
+body {
+    display:flex;
+    justify-content: center;
+}
+
+.container {
+    display:grid;
+    border-radius: 2vw;
+    border: 2vw solid rgb(58, 54, 54);
+    background-color: rgb(58, 54, 54);
+    grid-template-columns: repeat(4, 10vw);
+    grid-template-rows: minmax(10vw, auto) repeat(5, 8vw);
+    gap: 0.15vw;
+}
+
+.display {
+    grid-column: 1 / -1;
+    background-color: dimgrey;
+    border-radius: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    font-size: 3rem;
+    margin-bottom: 1vw;
+    padding-right: 1vw;
+}
+
+button {
+    border-radius: 1.5vw;
+    margin: 0.2vw;
+    font-size: 1.5rem;
+}
+
+.delete {
+    grid-column: span 3;
+    background-color: burlywood;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+.operator {
+    background-color: lightblue;
+}
+
+.equals {
+    background-color:tomato;
+}
+
